@@ -1,0 +1,23 @@
+site_name: 模型部署V2.1
+
+# repo_url: 'https://github.com/AITutorials/manuals'
+# repo_name: 'Github'
+
+copyright: ©Copyright 2024 AITutorials.CN This website has been reviewed by the review agency. 京ICP备23006137号
+
+google_analytics: ['UA-36723568-3', 'mkdocs.org']
+
+theme:
+  name: 'material'
+  language: 'zh'
+  favicon: 'img/AI.jpg'
+  # feature:
+  #  tabs: true
+  logo: 'img/AI.jpg'
+     #icon: 'star'
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - footnotes
+
