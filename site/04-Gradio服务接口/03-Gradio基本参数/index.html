@@ -1,0 +1,2317 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../02-Gradio%E5%AE%89%E8%A3%85%26%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
+      
+      
+        <link rel="next" href="../04-Gradio%E5%BA%94%E7%94%A8%E5%88%86%E4%BA%AB/">
+      
+      
+      <link rel="icon" href="../../img/AI.jpg">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.16">
+    
+    
+      
+        <title>Gradio 基本参数 - 模型部署V2.1</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gradio" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="模型部署V2.1" class="md-header__button md-logo" aria-label="模型部署V2.1" data-md-component="logo">
+      
+  <img src="../../img/AI.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            模型部署V2.1
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gradio 基本参数
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="模型部署V2.1" class="md-nav__button md-logo" aria-label="模型部署V2.1" data-md-component="logo">
+      
+  <img src="../../img/AI.jpg" alt="logo">
+
+    </a>
+    模型部署V2.1
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    模型部署实战
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    01 模型训练
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            01 模型训练
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/00-README/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    模型训练
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/01-%E5%9E%83%E5%9C%BE%E9%82%AE%E4%BB%B6%E5%88%86%E7%B1%BB-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    垃圾邮件分类-数据处理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/02-%E5%9E%83%E5%9C%BE%E9%82%AE%E4%BB%B6%E5%88%86%E7%B1%BB-%E8%AE%AD%E7%BB%83%E8%AF%84%E4%BC%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    垃圾邮件分类-训练评估
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    02 Flask服务接口
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            02 Flask服务接口
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-Flask%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3/00-README/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask服务接口
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-Flask%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3/01-Flask-%E4%BD%9C%E7%94%A8%E4%B8%8E%E6%B5%81%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask 作用与流程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-Flask%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3/02-Flask-Hello-World/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask Hello World
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-Flask%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3/03-Flask-%E8%A1%A8%E5%8D%95%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask 表单使用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-Flask%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3/04-Flask-%E6%9C%8D%E5%8A%A1%E4%BA%A4%E4%BB%98/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask 服务交付
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-Flask%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3/05-FLask-%E6%9C%8D%E5%8A%A1%E5%B0%81%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flask 服务封装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    03 容器部署
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            03 容器部署
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/00-README/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    容器部署
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/01-Docker-%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker 介绍安装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/02-Docker-%E5%BF%AB%E9%80%9F%E5%85%A5%E6%89%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker 快速入手
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/03-Docker-%E9%95%9C%E5%83%8F%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker 镜像操作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/04-Docker-%E5%AE%B9%E5%99%A8%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker 容器操作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/05-Docker-%E6%89%8B%E5%8A%A8%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker 手动构建镜像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/06-Docker-%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker 自动构建镜像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2/07-Docker-%E9%95%9C%E5%83%8F%E6%8E%A8%E9%80%81/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker 镜像推送
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    04 Gradio服务接口
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            04 Gradio服务接口
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-README/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gradio服务接口
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-Gradio%E7%AE%80%E4%BB%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gradio 简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-Gradio%E5%AE%89%E8%A3%85%26%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gradio 安装&基本用法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Gradio 基本参数
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Gradio 基本参数
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Interface类介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Interface类介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Interface类及基础模块
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Interface类及基础模块">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）Interface类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2） 基础模块
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 应用实例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 应用实例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）自定义输入组件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）多个输入和输出
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）图像组件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      （4）动态界面接口：简单计算器模板实时变化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Interface进阶使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Interface进阶使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Interface状态
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Interface状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）全局变量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）会话状态
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 自定制组件：Blocks构建应用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 自定制组件：Blocks构建应用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 简单演示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 多模块应用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-flagging" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Flagging标记
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 样式、队列、生成器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Blocks进阶使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Blocks进阶使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Blocks事件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Blocks事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）可交互设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）事件设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）多个数据流
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （4）多输出值处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      （5）组件配置修改
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Blocks布局
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 Blocks布局">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）组件水平排列
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）组件垂直排列与嵌套
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）组件可视化：输出可视化从无到有
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （4）组件渲染：点击作为输入
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 样式修改
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 样式修改">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1css" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）自定义css
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）元素选择
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-Gradio%E5%BA%94%E7%94%A8%E5%88%86%E4%BA%AB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gradio 应用分享
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-Gradio%E6%A1%88%E4%BE%8B%E5%8D%87%E7%BA%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gradio 案例升级
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Interface类介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Interface类介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Interface类及基础模块
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Interface类及基础模块">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）Interface类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2） 基础模块
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 应用实例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 应用实例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）自定义输入组件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）多个输入和输出
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）图像组件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      （4）动态界面接口：简单计算器模板实时变化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Interface进阶使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Interface进阶使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Interface状态
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Interface状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）全局变量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）会话状态
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 自定制组件：Blocks构建应用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 自定制组件：Blocks构建应用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 简单演示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 多模块应用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-flagging" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Flagging标记
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 样式、队列、生成器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Blocks进阶使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Blocks进阶使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Blocks事件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Blocks事件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）可交互设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）事件设置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）多个数据流
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （4）多输出值处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      （5）组件配置修改
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Blocks布局
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 Blocks布局">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）组件水平排列
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）组件垂直排列与嵌套
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）组件可视化：输出可视化从无到有
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （4）组件渲染：点击作为输入
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 样式修改
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 样式修改">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1css" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）自定义css
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）元素选择
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="gradio">Gradio 基本参数</h1>
+<h2 id="1-interface">1. Interface类介绍</h2>
+<h3 id="11-interface">1.1 Interface类及基础模块</h3>
+<h4 id="1interface">（1）Interface类</h4>
+<p>Gradio 可以包装几乎任何 Python 函数为易于使用的用户界面。从上面例子我们看到，简单的基于文本的函数。但这个函数还可以处理很多类型。 Interface类通过以下三个参数进行初始化：</p>
+<ul>
+<li>fn：包装的函数</li>
+<li>inputs：输入组件类型，（例如：“text”、"image）</li>
+<li>ouputs：输出组件类型，（例如：“text”、"image）</li>
+</ul>
+<p>通过这三个参数，我们可以快速创建一个接口并发布他们。</p>
+<h4 id="2">（2） 基础模块</h4>
+<p>最常用的基础模块构成。</p>
+<p><strong>（1）应用界面</strong></p>
+<ul>
+<li>gr.Interface(简易场景)</li>
+<li>gr.Blocks(定制化场景)</li>
+</ul>
+<p><strong>（2）输入输出</strong>   </p>
+<ul>
+<li>gr.Image(图像)</li>
+<li>gr.Textbox(文本框)</li>
+<li>gr.DataFrame(数据框)</li>
+<li>gr.Dropdown(下拉选项)</li>
+<li>gr.Number(数字)</li>
+<li>gr.Markdown(Markdown文本)</li>
+<li>gr.Files(文件)</li>
+</ul>
+<p><strong>（3）控制组件</strong></p>
+<ul>
+<li>gr.Button(按钮)</li>
+</ul>
+<p><strong>（4）布局组件</strong></p>
+<ul>
+<li>gr.Tab(标签页)</li>
+<li>gr.Row(行布局)</li>
+<li>gr.Column(列布局)</li>
+</ul>
+<h3 id="12">1.2 应用实例</h3>
+<h4 id="1">（1）自定义输入组件</h4>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span>
+
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span>
+    <span class="n">fn</span><span class="o">=</span><span class="n">greet</span><span class="p">,</span>
+    <span class="c1"># 自定义输入框</span>
+    <span class="c1"># 具体设置方法查看官方文档</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">lines</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Name Here...&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;my input&quot;</span><span class="p">),</span>
+    <span class="n">outputs</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319173412511" src="../assets/image-20240319173412511.png" /></p>
+<ul>
+<li><strong>Interface.launch()方法返回三个值</strong></li>
+<li>
+<p>app，为 Gradio 演示提供支持的 FastAPI 应用程序</p>
+</li>
+<li>
+<p>local_url，本地地址</p>
+</li>
+<li>share_url，公共地址，当share=True时生成</li>
+</ul>
+<h4 id="2_1">（2）多个输入和输出</h4>
+<p>对于复杂程序，输入列表中的每个组件按顺序对应于函数的一个参数。输出列表中的每个组件按顺序排列对应于函数返回的一个值。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="c1"># 该函数有3个输入参数和2个输出参数</span>
+<span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">is_morning</span><span class="p">,</span> <span class="n">temperature</span><span class="p">):</span>
+    <span class="n">salutation</span> <span class="o">=</span> <span class="s2">&quot;Good morning&quot;</span> <span class="k">if</span> <span class="n">is_morning</span> <span class="k">else</span> <span class="s2">&quot;Good evening&quot;</span>
+    <span class="n">greeting</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">salutation</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">. It is </span><span class="si">{</span><span class="n">temperature</span><span class="si">}</span><span class="s2"> degrees today&quot;</span>
+    <span class="n">celsius</span> <span class="o">=</span> <span class="p">(</span><span class="n">temperature</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span>
+    <span class="k">return</span> <span class="n">greeting</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">celsius</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span>
+    <span class="n">fn</span><span class="o">=</span><span class="n">greet</span><span class="p">,</span>
+    <span class="c1"># 按照处理程序设置输入组件</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;checkbox&quot;</span><span class="p">,</span> <span class="n">gr</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)],</span>
+    <span class="c1"># 按照处理程序设置输出组件</span>
+    <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;number&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319173726334" src="../assets/image-20240319173726334.png" /></p>
+<p>inputs列表里的每个字段按顺序对应函数的每个参数，outputs同理。</p>
+<h4 id="3">（3）图像组件</h4>
+<p>Gradio支持许多类型的组件，如image、dataframe、video。使用示例如下：</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">def</span> <span class="nf">sepia</span><span class="p">(</span><span class="n">input_img</span><span class="p">):</span>
+    <span class="c1"># 处理图像</span>
+    <span class="n">sepia_filter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="p">[</span><span class="mf">0.393</span><span class="p">,</span> <span class="mf">0.769</span><span class="p">,</span> <span class="mf">0.189</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.349</span><span class="p">,</span> <span class="mf">0.686</span><span class="p">,</span> <span class="mf">0.168</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.272</span><span class="p">,</span> <span class="mf">0.534</span><span class="p">,</span> <span class="mf">0.131</span><span class="p">]</span>
+    <span class="p">])</span>
+    <span class="n">sepia_img</span> <span class="o">=</span> <span class="n">input_img</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">sepia_filter</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">sepia_img</span> <span class="o">/=</span> <span class="n">sepia_img</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">sepia_img</span>
+
+<span class="c1"># shape设置输入图像大小</span>
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">sepia</span><span class="p">,</span> <span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">),</span> <span class="s2">&quot;image&quot;</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319174347694" src="../assets/image-20240319174347694.png" /></p>
+<h4 id="4">（4）动态界面接口：简单计算器模板实时变化</h4>
+<p>在Interface添加<strong>live=True</strong>参数，只要输入发生变化，结果马上发生改变。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">def</span> <span class="nf">calculator</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">operation</span><span class="p">,</span> <span class="n">num2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">operation</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+    <span class="k">elif</span> <span class="n">operation</span> <span class="o">==</span> <span class="s2">&quot;subtract&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span>
+    <span class="k">elif</span> <span class="n">operation</span> <span class="o">==</span> <span class="s2">&quot;multiply&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">*</span> <span class="n">num2</span>
+    <span class="k">elif</span> <span class="n">operation</span> <span class="o">==</span> <span class="s2">&quot;divide&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span>
+
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span>
+    <span class="n">calculator</span><span class="p">,</span>
+    <span class="p">[</span><span class="s2">&quot;number&quot;</span><span class="p">,</span> <span class="n">gr</span><span class="o">.</span><span class="n">Radio</span><span class="p">([</span><span class="s2">&quot;add&quot;</span><span class="p">,</span> <span class="s2">&quot;subtract&quot;</span><span class="p">,</span> <span class="s2">&quot;multiply&quot;</span><span class="p">,</span> <span class="s2">&quot;divide&quot;</span><span class="p">]),</span> <span class="s2">&quot;number&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+    <span class="n">live</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319174606293" src="../assets/image-20240319174606293.png" /></p>
+<ul>
+<li>简单计算器制作</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="c1"># 一个简单计算器，含实例说明</span>
+<span class="k">def</span> <span class="nf">calculator</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">operation</span><span class="p">,</span> <span class="n">num2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">operation</span> <span class="o">==</span> <span class="s2">&quot;add&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
+    <span class="k">elif</span> <span class="n">operation</span> <span class="o">==</span> <span class="s2">&quot;subtract&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">-</span> <span class="n">num2</span>
+    <span class="k">elif</span> <span class="n">operation</span> <span class="o">==</span> <span class="s2">&quot;multiply&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">*</span> <span class="n">num2</span>
+    <span class="k">elif</span> <span class="n">operation</span> <span class="o">==</span> <span class="s2">&quot;divide&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">num2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># 设置报错弹窗</span>
+            <span class="k">raise</span> <span class="n">gr</span><span class="o">.</span><span class="n">Error</span><span class="p">(</span><span class="s2">&quot;Cannot divide by zero!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">num1</span> <span class="o">/</span> <span class="n">num2</span>
+
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span>
+    <span class="n">calculator</span><span class="p">,</span>
+    <span class="c1"># 设置输入</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+        <span class="n">gr</span><span class="o">.</span><span class="n">Radio</span><span class="p">([</span><span class="s2">&quot;add&quot;</span><span class="p">,</span> <span class="s2">&quot;subtract&quot;</span><span class="p">,</span> <span class="s2">&quot;multiply&quot;</span><span class="p">,</span> <span class="s2">&quot;divide&quot;</span><span class="p">]),</span>
+        <span class="s2">&quot;number&quot;</span>
+    <span class="p">],</span>
+    <span class="c1"># 设置输出</span>
+    <span class="s2">&quot;number&quot;</span><span class="p">,</span>
+    <span class="c1"># 设置输入参数示例</span>
+    <span class="n">examples</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;add&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;divide&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;multiply&quot;</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;subtract&quot;</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">],</span>
+    <span class="p">],</span>
+    <span class="c1"># 设置网页标题</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Toy Calculator&quot;</span><span class="p">,</span>
+    <span class="c1"># 左上角的描述文字</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Here&#39;s a sample toy calculator. Enjoy!&quot;</span><span class="p">,</span>
+    <span class="c1"># 左下角的文字</span>
+    <span class="n">article</span> <span class="o">=</span> <span class="s2">&quot;Check out the examples&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319175312529" src="../assets/image-20240319175312529.png" /></p>
+<h2 id="2-interface">2. Interface进阶使用</h2>
+<h3 id="21-interface">2.1 Interface状态</h3>
+<h4 id="1_1">（1）全局变量</h4>
+<p>全局变量的好处就是在调用函数后仍然能够保存，例如在机器学习中通过全局变量从外部加载一个大型模型，并在函数内部使用它，以便每次函数调用都不需要重新加载模型。下面就展示了全局变量使用的好处。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">track_score</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+    <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+    <span class="c1"># 返回分数top3</span>
+    <span class="n">top_scores</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">top_scores</span>
+
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span>
+    <span class="n">track_score</span><span class="p">,</span>
+    <span class="n">gr</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Score&quot;</span><span class="p">),</span>
+    <span class="n">gr</span><span class="o">.</span><span class="n">JSON</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Top Scores&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319175903586" src="../assets/image-20240319175903586.png" /></p>
+<h4 id="2_2">（2）会话状态</h4>
+<p>Gradio支持的另一种数据持久性是会话状态，数据在一个页面会话中的多次提交中持久存在。然而，数据不会在你模型的不同用户之间共享。会话状态的典型例子就是聊天机器人，你想访问用户之前提交的信息，但你不能将聊天记录存储在一个全局变量中，因为那样的话，聊天记录会在不同的用户之间乱成一团。注意该状态会在每个页面内的提交中持续存在，但如果你在另一个标签页中加载该演示（或刷新页面），该演示将不会共享聊天历史。</p>
+<p>要在会话状态下存储数据，需要做三件事：</p>
+<ul>
+<li>在你的函数中传入一个额外的参数，它代表界面的状态。</li>
+<li>在函数的最后，将状态的更新值作为一个额外的返回值返回。</li>
+<li>在添加输入和输出时添加state组件。</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">history</span><span class="p">):</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">history</span> <span class="ow">or</span> <span class="p">[]</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;how many&quot;</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;how&quot;</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;Great&quot;</span><span class="p">,</span> <span class="s2">&quot;Good&quot;</span><span class="p">,</span> <span class="s2">&quot;Okay&quot;</span><span class="p">,</span> <span class="s2">&quot;Bad&quot;</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;where&quot;</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;Here&quot;</span><span class="p">,</span> <span class="s2">&quot;There&quot;</span><span class="p">,</span> <span class="s2">&quot;Somewhere&quot;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="s2">&quot;I don&#39;t know&quot;</span>
+    <span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">message</span><span class="p">,</span> <span class="n">response</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">history</span><span class="p">,</span> <span class="n">history</span>
+
+<span class="c1"># 设置一个对话窗</span>
+<span class="n">chatbot</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Chatbot</span><span class="p">()</span>
+
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span>
+    <span class="n">chat</span><span class="p">,</span>
+    <span class="c1"># 添加state组件</span>
+    <span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">chatbot</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">],</span>
+    <span class="c1"># 设置没有保存数据的按钮</span>
+    <span class="n">allow_flagging</span><span class="o">=</span><span class="s2">&quot;never&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319193855925" src="../assets/image-20240319193855925.png" /></p>
+<h2 id="3-blocks">3. 自定制组件：Blocks构建应用</h2>
+<p>相比Interface，Blocks提供了一个低级别的API，用于设计具有更灵活布局和数据流的网络应用。Blocks允许控制组件在页面上出现的位置，处理复杂的数据流（例如，输出可以作为其他函数的输入），并根据用户交互更新组件的属性可见性。可以定制更多组件，<a href="https://link.zhihu.com/?target=https%3A//gradio.app/docs/">更多详细定制可查看文档</a></p>
+<h3 id="31">3.1 简单演示</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span>
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="c1"># 设置输入组件</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+    <span class="c1"># 设置输出组件</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Output Box&quot;</span><span class="p">)</span>
+    <span class="c1"># 设置按钮</span>
+    <span class="n">greet_btn</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Greet&quot;</span><span class="p">)</span>
+    <span class="c1"># 设置按钮点击事件</span>
+    <span class="n">greet_btn</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">greet</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319194348045" src="../assets/image-20240319194348045.png" /></p>
+<p>Blocks方式需要with语句添加组件，如果不设置布局方式，那么组件将按照创建的顺序垂直出现在应用程序中，运行界面</p>
+<h3 id="32">3.2 多模块应用</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">def</span> <span class="nf">flip_text</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">flip_image</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">fliplr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="c1"># 用markdown语法编辑输出一段话</span>
+    <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;Flip text or image files using this demo.&quot;</span><span class="p">)</span>
+    <span class="c1"># 设置tab选项卡</span>
+    <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span><span class="s2">&quot;Flip Text&quot;</span><span class="p">):</span>
+        <span class="c1"># Blocks特有组件，设置所有子组件按垂直排列</span>
+        <span class="c1"># 垂直排列是默认情况，不加也没关系</span>
+        <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Column</span><span class="p">():</span>
+            <span class="n">text_input</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">()</span>
+            <span class="n">text_output</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">()</span>
+            <span class="n">text_button</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Flip&quot;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span><span class="s2">&quot;Flip Image&quot;</span><span class="p">):</span>
+        <span class="c1"># Blocks特有组件，设置所有子组件按水平排列</span>
+        <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Row</span><span class="p">():</span>
+            <span class="n">image_input</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">()</span>
+            <span class="n">image_output</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">()</span>
+        <span class="n">image_button</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Flip&quot;</span><span class="p">)</span>
+    <span class="c1"># 设置折叠内容</span>
+    <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Accordion</span><span class="p">(</span><span class="s2">&quot;Open for More!&quot;</span><span class="p">):</span>
+        <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;Look at me...&quot;</span><span class="p">)</span>
+    <span class="n">text_button</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">flip_text</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">text_input</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">text_output</span><span class="p">)</span>
+    <span class="n">image_button</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">flip_image</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">image_input</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">image_output</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319194551874" src="../assets/image-20240319194551874.png" /></p>
+<p><img alt="image-20240319194620657" src="../assets/image-20240319194620657.png" /></p>
+<h3 id="33-flagging">3.3 Flagging标记</h3>
+<p>相信有小伙伴已经注意到，输出框下有个Flag按钮。当测试您的模型的用户看到某个输入导致输出错误或意外的模型行为，他们可以标记这个输入让开发者知道。这个文件夹由Interface的flagging_dir参数指定，默认为’flagged’。将这些会导致错误的输入保存到一个csv文件。如果Interface包含文件数据，文件夹也会创建来保存这些标记数据。</p>
+<p>打开log.csv展示如下：</p>
+<p><img alt="image-20240319194910504" src="../assets/image-20240319194910504.png" /></p>
+<h3 id="34">3.4 样式、队列、生成器</h3>
+<ul>
+<li>样式</li>
+</ul>
+<p>在Gradio官方文档，搜索不同的组件加.style（如image.style），可以获取该组件的样式参数设置样例。例如image组件的设置如下：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">img</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;lion.jpg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="s1">&#39;24&#39;</span><span class="p">,</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li>队列 </li>
+</ul>
+<p>如果函数推理时间较长，比如目标检测；或者应用程序处理流量过大，则需要使用queue方法进行排队。queue方法使用websockets，可以防止网络超时。使用方式如下：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">queue</span><span class="p">()</span>
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+
+<span class="c1">#或</span>
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="c1">#...</span>
+<span class="n">demo</span><span class="o">.</span><span class="n">queue</span><span class="p">()</span>
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<ul>
+<li>生成器</li>
+</ul>
+<p>在某些情况下，你可能想显示一连串的输出，而不是单一的输出。例如，你可能有一个图像生成模型，如果你想显示在每个步骤中生成的图像，从而得到最终的图像。在这种情况下，你可以向Gradio提供一个生成器函数，而不是一个常规函数。下面是一个生成器的例子，每隔1秒返回1张图片。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># 生成steps张图片，每隔1秒钟返回</span>
+<span class="k">def</span> <span class="nf">fake_diffusion</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="k">yield</span> <span class="n">image</span>
+
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fake_diffusion</span><span class="p">,</span>
+                    <span class="c1"># 设置滑窗，最小值为1，最大值为10，初始值为3，每次改动增减1位</span>
+                    <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+                    <span class="n">outputs</span><span class="o">=</span><span class="s2">&quot;image&quot;</span><span class="p">)</span>
+
+<span class="c1"># 生成器必须要queue函数</span>
+<span class="n">demo</span><span class="o">.</span><span class="n">queue</span><span class="p">()</span>
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319195124054" src="../assets/image-20240319195124054.png" /></p>
+<h2 id="4-blocks">4. Blocks进阶使用</h2>
+<h3 id="41-blocks">4.1 Blocks事件</h3>
+<h4 id="1_2">（1）可交互设置</h4>
+<p>任何输入的组件内容都是可编辑的，而输出组件默认是不能编辑的。如果想要使得输出组件内容可编辑，设置interactive=True即可。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span>
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+    <span class="c1"># 不可交互</span>
+    <span class="c1"># output = gr.Textbox(label=&quot;Output Box&quot;)</span>
+    <span class="c1"># 可交互</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Output&quot;</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">greet_btn</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Greet&quot;</span><span class="p">)</span>
+    <span class="n">greet_btn</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">greet</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<h4 id="2_3">（2）事件设置</h4>
+<p>我们可以为不同的组件设置不同事件，如为输入组件添加change事件。可以进一步查看官方文档，看看组件还有哪些事件。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">def</span> <span class="nf">welcome</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Welcome to Gradio, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span>
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    # Hello World!</span>
+<span class="sd">    Start typing below to see the output.</span>
+<span class="sd">    &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">inp</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;What is your name?&quot;</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">()</span>
+    <span class="c1"># 设置change事件</span>
+    <span class="n">inp</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="n">fn</span> <span class="o">=</span> <span class="n">welcome</span><span class="p">,</span> <span class="n">inputs</span> <span class="o">=</span> <span class="n">inp</span><span class="p">,</span> <span class="n">outputs</span> <span class="o">=</span> <span class="n">out</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319195552413" src="../assets/image-20240319195552413.png" /></p>
+<h4 id="3_1">（3）多个数据流</h4>
+<p>如果想处理多个数据流，只要设置相应的输入输出组件即可。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">def</span> <span class="nf">increase</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+    <span class="c1"># 要想b&gt;a，则使得b = a+1</span>
+    <span class="n">atob</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;b &gt; a&quot;</span><span class="p">)</span>
+    <span class="n">atob</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">increase</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="c1"># 要想a&gt;b，则使得a = b+1</span>
+    <span class="n">btoa</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;a &gt; b&quot;</span><span class="p">)</span>
+    <span class="n">btoa</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">increase</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319195751507" src="../assets/image-20240319195751507.png" /></p>
+<h4 id="4_1">（4）多输出值处理</h4>
+<ul>
+<li>下面的例子展示了输出多个值时，以列表形式表现的处理方式。</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="n">food_box</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Food Count&quot;</span><span class="p">)</span>
+    <span class="n">status_box</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="n">food</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">food</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">food</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;full&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;hungry&quot;</span>
+    <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;EAT&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">(</span>
+        <span class="n">fn</span><span class="o">=</span><span class="n">eat</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="o">=</span><span class="n">food_box</span><span class="p">,</span>
+        <span class="c1"># 根据返回值改变输入组件和输出组件</span>
+        <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">food_box</span><span class="p">,</span> <span class="n">status_box</span><span class="p">]</span>
+    <span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319195940309" src="../assets/image-20240319195940309.png" /></p>
+<h4 id="5">（5）组件配置修改</h4>
+<p>事件监听器函数的返回值通常是相应的输出组件的更新值。有时我们也想更新组件的配置，比如说可见性。在这种情况下，我们可以通过返回update函数更新组件的配置。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">def</span> <span class="nf">change_textbox</span><span class="p">(</span><span class="n">choice</span><span class="p">):</span>
+    <span class="c1"># 根据不同输入对输出控件进行更新</span>
+    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;short&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">gr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">lines</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;Short story: &quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;long&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">gr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">lines</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;Long story...&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">gr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="n">radio</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Radio</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;short&quot;</span><span class="p">,</span> <span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Essay Length to Write?&quot;</span>
+    <span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">lines</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">radio</span><span class="o">.</span><span class="n">change</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">change_textbox</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">radio</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319200135584" src="../assets/image-20240319200135584.png" /></p>
+<h3 id="42-blocks">4.2 Blocks布局</h3>
+<p>Blocks应用的是html中的flexbox模型布局，默认情况下组件垂直排列。</p>
+<h4 id="1_3">（1）组件水平排列</h4>
+<p>使用Row函数会将组件按照水平排列，但是在Row函数块里面的组件都会保持同等高度。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Row</span><span class="p">():</span>
+        <span class="n">img1</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">()</span>
+        <span class="n">text1</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Text</span><span class="p">()</span>
+    <span class="n">btn1</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;button&quot;</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319200335156" src="../assets/image-20240319200335156.png" /></p>
+<h4 id="2_4">（2）组件垂直排列与嵌套</h4>
+<p>组件通常是垂直排列，我们可以通过Row函数和Column函数生成不同复杂的布局。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Row</span><span class="p">():</span>
+        <span class="n">text1</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;t1&quot;</span><span class="p">)</span>
+        <span class="n">slider2</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;s2&quot;</span><span class="p">)</span>
+        <span class="n">drop3</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;d3&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Row</span><span class="p">():</span>
+        <span class="c1"># scale与相邻列相比的相对宽度。例如，如果列A的比例为2，列B的比例为1，则A的宽度将是B的两倍。</span>
+        <span class="c1"># min_width设置最小宽度，防止列太窄</span>
+        <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">min_width</span><span class="o">=</span><span class="mi">600</span><span class="p">):</span>
+            <span class="n">text1</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;prompt 1&quot;</span><span class="p">)</span>
+            <span class="n">text2</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;prompt 2&quot;</span><span class="p">)</span>
+            <span class="n">inbtw</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Between&quot;</span><span class="p">)</span>
+            <span class="n">text4</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;prompt 1&quot;</span><span class="p">)</span>
+            <span class="n">text5</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;prompt 2&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">min_width</span><span class="o">=</span><span class="mi">600</span><span class="p">):</span>
+            <span class="n">img1</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;test.jpg&quot;</span><span class="p">)</span>
+            <span class="n">btn</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Go&quot;</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240408115348504" src="../assets/image-20240408115348504.png" /></p>
+<h4 id="3_2">（3）组件可视化：输出可视化从无到有</h4>
+<p>如下所示，我们可以通过visible和update函数构建更为复杂的应用。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="c1"># 出错提示框</span>
+    <span class="n">error_box</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># 输入框</span>
+    <span class="n">name_box</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+    <span class="n">age_box</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Age&quot;</span><span class="p">)</span>
+    <span class="n">symptoms_box</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">CheckboxGroup</span><span class="p">([</span><span class="s2">&quot;Cough&quot;</span><span class="p">,</span> <span class="s2">&quot;Fever&quot;</span><span class="p">,</span> <span class="s2">&quot;Runny Nose&quot;</span><span class="p">])</span>
+    <span class="n">submit_btn</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Submit&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 输出不可见</span>
+    <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">output_col</span><span class="p">:</span>
+        <span class="n">diagnosis_box</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Diagnosis&quot;</span><span class="p">)</span>
+        <span class="n">patient_summary_box</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Patient Summary&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">submit</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">symptoms</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="n">error_box</span><span class="p">:</span> <span class="n">gr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;Enter name&quot;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">)}</span>
+        <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="n">error_box</span><span class="p">:</span> <span class="n">gr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;Enter valid age&quot;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">)}</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">output_col</span><span class="p">:</span> <span class="n">gr</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">diagnosis_box</span><span class="p">:</span> <span class="s2">&quot;covid&quot;</span> <span class="k">if</span> <span class="s2">&quot;Cough&quot;</span> <span class="ow">in</span> <span class="n">symptoms</span> <span class="k">else</span> <span class="s2">&quot;flu&quot;</span><span class="p">,</span>
+            <span class="n">patient_summary_box</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> y/o&quot;</span>
+        <span class="p">}</span>
+
+    <span class="n">submit_btn</span><span class="o">.</span><span class="n">click</span><span class="p">(</span>
+        <span class="n">submit</span><span class="p">,</span>
+        <span class="p">[</span><span class="n">name_box</span><span class="p">,</span> <span class="n">age_box</span><span class="p">,</span> <span class="n">symptoms_box</span><span class="p">],</span>
+        <span class="p">[</span><span class="n">error_box</span><span class="p">,</span> <span class="n">diagnosis_box</span><span class="p">,</span> <span class="n">patient_summary_box</span><span class="p">,</span> <span class="n">output_col</span><span class="p">],</span>
+    <span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319200659145" src="../assets/image-20240319200659145.png" /></p>
+<h4 id="4_2">（4）组件渲染：点击作为输入</h4>
+<p>在某些情况下，你可能希望在实际的UI中呈现组件之前定义组件。例如，你可能希望在相应的gr.Textbox输入上方显示使用gr.examples的示例部分。</p>
+<p>由于gr.Examples需要输入组件对象作为参数，因此你需要先定义输入组件，然后在定义gr.Exmples对象后再进行渲染。</p>
+<p><strong>解决方法：</strong>在gr.Blocks()范围外定义gr.Textbox，并在UI中希望放置的任何位置使用组件的.render()方法。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="n">input_textbox</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="c1"># 提供示例输入给input_textbox，示例输入以嵌套列表形式设置</span>
+    <span class="n">gr</span><span class="o">.</span><span class="n">Examples</span><span class="p">([</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;bonjour&quot;</span><span class="p">,</span> <span class="s2">&quot;merhaba&quot;</span><span class="p">],</span> <span class="n">input_textbox</span><span class="p">)</span>
+    <span class="c1"># render函数渲染input_textbox</span>
+    <span class="n">input_textbox</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319200808442" src="../assets/image-20240319200808442.png" /></p>
+<h3 id="43">4.3 样式修改</h3>
+<h4 id="1css">（1）自定义css</h4>
+<p>要获得额外的样式功能，你可以设置行内css属性将任何样式给应用程序。如下所示。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="c1"># 修改blocks的背景颜色</span>
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">(</span><span class="n">css</span><span class="o">=</span><span class="s2">&quot;.gradio-container {background-color: red}&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="n">box1</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;Good Job&quot;</span><span class="p">)</span>
+    <span class="n">box2</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;Failure&quot;</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319200941915" src="../assets/image-20240319200941915.png" /></p>
+<h4 id="2_5">（2）元素选择</h4>
+<p>你可以向任何组件添加HTML元素。通过elem_id选择对应的css元素。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="c1"># 这里用的是id属性设置</span>
+<span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">(</span><span class="n">css</span><span class="o">=</span><span class="s2">&quot;#warning {background-color: red}&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="n">box1</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;Good Job&quot;</span><span class="p">,</span> <span class="n">elem_id</span><span class="o">=</span><span class="s2">&quot;warning&quot;</span><span class="p">)</span>
+    <span class="n">box2</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;Failure&quot;</span><span class="p">)</span>
+    <span class="n">box3</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="n">elem_id</span><span class="o">=</span><span class="s2">&quot;warning&quot;</span><span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="image-20240319201031951" src="../assets/image-20240319201031951.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      ©Copyright 2024 AITutorials.CN This website has been reviewed by the review agency. 京ICP备23006137号
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bd41221c.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -629,7 +629,7 @@ with gr.Blocks() as demo:
 demo.launch()
 ```
 
-![image-20240319200524896](assets/image-20240319200524896.png)
+![image-20240408115348504](assets/image-20240408115348504.png)
 
 #### （3）组件可视化：输出可视化从无到有
 

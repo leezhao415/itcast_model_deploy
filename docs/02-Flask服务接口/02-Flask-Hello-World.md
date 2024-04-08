@@ -3,6 +3,8 @@
 
 Flask 是使用 Python 语言编写的轻量级的 Web 应用程序框架。使用该技术，我们可以将训练得到的模型封装一个能够提供预测的网络应用程序，即: 可以对外提供一个服务接口。
 
+Flask中文文档：[https://docs.jinkan.org/docs/flask/](https://docs.jinkan.org/docs/flask/)
+
 
 安装命令如下:
 
